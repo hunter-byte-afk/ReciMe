@@ -1,7 +1,9 @@
 # ReciMe
 
 ## How To Set Up After Cloning Repo! 
-- How Can We Set Up the database?
+
+### How Can We Set Up the database?
+
 **Tools I Used**
 - MySQL Community Workbench
 - Installed MySQL
