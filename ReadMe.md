@@ -28,7 +28,8 @@ This is straight forward, this is what the users will submit with all the fun th
 ```CREATE TABLE ingredients (
     ingredient_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) UNIQUE NOT NULL
-);```
+);
+```
 
 #### Recipe Ingredients
 ```CREATE TABLE recipe_ingredients (
@@ -38,14 +39,16 @@ This is straight forward, this is what the users will submit with all the fun th
     PRIMARY KEY (recipe_id, ingredient_id),
     FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id) ON DELETE CASCADE,
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id) ON DELETE CASCADE
-);```
+);
+```
 
 #### Users 
 I know we talk about having a user for the application. 
 ```CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) UNIQUE NOT NULL,
-);```
+);
+```
 
 #### Pantry
 This is will be for the pantry aspect of the the application. 
@@ -56,5 +59,6 @@ This is will be for the pantry aspect of the the application.
     quantity VARCHAR(50),
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id) ON DELETE CASCADE
-); ```
+);
+```
 
