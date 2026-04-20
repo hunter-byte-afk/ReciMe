@@ -3,6 +3,10 @@
 ## Database We Used: 
 **MySQL**
 
+### How Can We Share the Database?
+With mysqldump!
+```mysqldump -u [USERNAME] -p recime > export_file.sql 
+
 ### Explaining the Schemda
 
 #### Recipes
