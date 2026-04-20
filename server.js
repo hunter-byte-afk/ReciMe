@@ -4,7 +4,7 @@
 // Resources used from Geeks for Geeks: https://www.geeksforgeeks.org/node-js/node-js-connect-mysql-with-node-app/
 
 // importing mysql module
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 // creating connection to database
 const db = mysql.createConnection({
@@ -17,10 +17,17 @@ const db = mysql.createConnection({
 
 db.connect(function(err) {
     if (err) {
-        if (err) {
-            console.log("Error connecting to the ReciMe database", err);
-        } else {
-            console.log("Connection created successfully to the ReciMe database");
-        }
+        console.log("Error connecting to the ReciMe database", err);
+    } else {
+        console.log("Connection created successfully to the ReciMe database");
     }
 });
+
+  db.query('SELECT * FROM recipes', (err, results) => {
+    if (err) {
+      console.error('Query error:', err);
+      return;
+    }
+    console.log('Query results:', results);
+  });
+

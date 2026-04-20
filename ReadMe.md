@@ -1,7 +1,24 @@
 # ReciMe
 
+## How To Set Up After Cloning Repo! 
+- How Can We Set Up the database?
+**Tools I Used**
+- MySQL Community Workbench
+- Installed MySQL
+- Windows 11 
+- Java
+- node.js
+
+### Initialize the Application
+In the directorary in your terminal: `npm init -y`
+
+After `npm install mysql2`
+
+### Setting up the Database
+I am sure there is a better way to do this but using either the table_schema.sql or the export_file.sql (if present): either use the terminal or the MySQL Community Workbench and create the schema 
 ## Database We Used: 
 **MySQL**
+
 
 ### How Can We Share the Database?
 With mysqldump!

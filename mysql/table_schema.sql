@@ -1,3 +1,5 @@
+create schema recime;
+
 CREATE TABLE recipes (
     recipe_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -25,7 +27,7 @@ CREATE TABLE recipe_ingredients (
 
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100) UNIQUE NOT NULL,
+    username VARCHAR(100) UNIQUE NOT NULL
 );
 
 CREATE TABLE pantry (
