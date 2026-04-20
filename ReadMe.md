@@ -5,7 +5,7 @@
 
 ### How Can We Share the Database?
 With mysqldump!
-```mysqldump -u [USERNAME] -p recime > export_file.sql 
+```mysqldump -u [USERNAME] -p recime > export_file.sql ```
 
 ### Explaining the Schemda
 
@@ -25,36 +25,36 @@ This is straight forward, this is what the users will submit with all the fun th
 
 #### Ingredient Table
 
-CREATE TABLE ingredients (
+```CREATE TABLE ingredients (
     ingredient_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) UNIQUE NOT NULL
-);
+);```
 
 #### Recipe Ingredients
-CREATE TABLE recipe_ingredients (
+```CREATE TABLE recipe_ingredients (
     recipe_id INT,
     ingredient_id INT,
     quantity VARCHAR(50), 
     PRIMARY KEY (recipe_id, ingredient_id),
     FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id) ON DELETE CASCADE,
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id) ON DELETE CASCADE
-);
+);```
 
 #### Users 
 I know we talk about having a user for the application. 
-CREATE TABLE users (
+```CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) UNIQUE NOT NULL,
-);
+);```
 
 #### Pantry
 This is will be for the pantry aspect of the the application. 
-CREATE TABLE pantry (
+```CREATE TABLE pantry (
     pantry_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     ingredient_id INT,
     quantity VARCHAR(50),
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id) ON DELETE CASCADE
-);
+); ```
 
