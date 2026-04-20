@@ -21,7 +21,7 @@ GRANT ALL PRIVILEGES ON recime.* TO 'recime'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-You can make sure that things are set up properly by running the server.js file: `node server.js`
+You can ensure things are set up properly by running the server.js file: `node server.js`. If you are able to connect to the server, than you should see all the recipes inside of the schema as of right now. 
 
 ## Database We Used: 
 **MySQL**
