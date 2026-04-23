@@ -3,8 +3,21 @@
 // Purpose is to create a connection to the MySQL Database. 
 // Resources used from Geeks for Geeks: https://www.geeksforgeeks.org/node-js/node-js-connect-mysql-with-node-app/
 
+// Mason Eiland
+// Adding some server backend stuff (express) localhost:3000/recipes for now
+
+const express = require('express');
+const cors = require('cors');
+
 // importing mysql module
 const mysql = require('mysql2');
+
+const app = express();
+const PORT = 3000;
+
+//middleware
+app.use(cors());
+app.use(express.json());
 
 // creating connection to database
 const db = mysql.createConnection({
@@ -31,3 +44,56 @@ db.connect(function(err) {
     console.log('Query results:', results);
   });
 
+
+  // test route same thing as the db.query above just done on the server side
+  app.get('/recipes', (req, res) => {
+    db.query('SELECT * FROM recipes', (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.json(results);
+    });
+  });
+
+  app.post('/recipes', (req, res) => {
+    const {
+        name,
+        desciption,
+        cook_time,
+        prep_time,
+        servings,
+        instructions
+    } = req.body;
+
+    const sql = `
+        INSERT INTO recipes
+        (name, description, cook_time, prep_time, servings, instructions)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
+
+    db.query(
+        sql,
+        [
+            name, 
+            desciption, 
+            parseInt(cook_time) || 0, 
+            parseInt(prep_time) || 0, 
+            parseInt(servings) || 0, 
+            instructions
+        ],
+        (err, result) => {
+            if (err) {
+                return res.status(500).json(err);
+            }
+            res.json({
+                message: "Recipe added successfully!",
+                recipeId: result.insertId
+            });
+        }
+    );
+  });
+
+  //start server
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  })
