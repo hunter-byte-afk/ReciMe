@@ -51,6 +51,7 @@ body{
     justify-content: center;
     align-items: center;
     margin: 15px;
+    width: 200px;
 }
 
 .search .topic{
