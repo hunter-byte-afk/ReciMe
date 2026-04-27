@@ -37,6 +37,58 @@ body{
 
 
 
+/* Index Page */
+.home{
+    display: flex;
+    align-items: flex-start;
+}
+
+.grocery{
+    background-color: #689689;
+    width: 275px;
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.grocery h2{
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.grocery .list{
+    background-color: #D9D9D9;
+    border: 5px solid #504136;
+    overflow: hidden;
+    padding-left: 10px;
+    width: 255px;
+}
+
+.pinboard{
+    background-color: #A49E8D;
+    display: flex;
+    flex: 1;
+    border: 10px solid #504136;
+    margin: 20px;
+    min-height: 500px;
+}
+
+.pinboard .pinItem{
+    background-color: #D9D9D9;
+    width: 200px;
+    height: 200px;
+    margin: 25px;
+    margin-left: 120px;
+    overflow: hidden;
+    display: flex;
+    flex: wrap;
+}
+
+
+
 /* PANTRY */
 .pantry{
     display: flex;
