@@ -1,5 +1,5 @@
-create schema recime;
-
+-- create schema recime;
+use recime;
 CREATE TABLE recipes (
     recipe_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -8,6 +8,8 @@ CREATE TABLE recipes (
     prep_time INT, -- minutes
     servings INT,
     instructions TEXT,
+    rating INT,
+    meal_type VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

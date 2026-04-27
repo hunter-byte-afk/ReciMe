@@ -19,10 +19,10 @@ INSERT INTO ingredients (name) VALUES
 ('cheese'),
 ('pasta');
 
-INSERT INTO recipes (name, description, cook_time, prep_time, servings, instructions) VALUES
-('Garlic Chicken', 'Simple garlic chicken dish', 25, 10, 2, 'Cook chicken with garlic and oil.'),
-('Tomato Pasta', 'Classic pasta with tomato sauce', 20, 10, 3, 'Boil pasta and add sauce.'),
-('Chicken Rice Bowl', 'Chicken served over rice', 30, 15, 2, 'Cook rice, add seasoned chicken.');
+INSERT INTO recipes (name, description, cook_time, prep_time, servings, instructions, rating, meal_type) VALUES
+('Garlic Chicken', 'Simple garlic chicken dish', 25, 10, 2, 'Cook chicken with garlic and oil.', 5, "Dinner"),
+('Tomato Pasta', 'Classic pasta with tomato sauce', 20, 10, 3, 'Boil pasta and add sauce.', 4, "Dinner"),
+('Chicken Rice Bowl', 'Chicken served over rice', 30, 15, 2, 'Cook rice, add seasoned chicken.', 4, "Lunch");
 
 INSERT INTO recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES
 (1, 1, '2 pieces'), -- chicken

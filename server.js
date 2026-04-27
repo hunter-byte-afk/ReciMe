@@ -46,6 +46,7 @@ db.connect(function(err) {
 
 
   // test route same thing as the db.query above just done on the server side
+  // Retrieves all recipes
   app.get('/recipes', (req, res) => {
     db.query('SELECT * FROM recipes', (err, results) => {
         if (err) {
@@ -55,6 +56,7 @@ db.connect(function(err) {
     });
   });
 
+  // add a recipe to database
   app.post('/recipes', (req, res) => {
     const {
         name,
@@ -91,6 +93,36 @@ db.connect(function(err) {
             });
         }
     );
+  });
+
+//   Retrieves the recipes based on search parameters { rating, mealType, name } for now...
+  app.get('/recipes/search', (req, res) => {
+    const { rating, mealType, name } = req.query;
+
+    let sql = "SELECT * FROM recipes WHERE 1=1";
+    let params = [];
+
+    if (rating) {
+        sql += " AND rating = ?";
+        params.push(rating);
+    }
+
+    if (name) {
+        sql += " AND name LIKE ?";
+        params.push(`%${name}%`);
+    }
+
+    if (mealType) {
+        sql += " AND meal_type = ?";
+        params.push(mealType);
+    }
+
+    db.query(sql, params, (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.json(results);
+    });
   });
 
   //start server

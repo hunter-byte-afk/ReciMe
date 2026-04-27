@@ -23,19 +23,19 @@
                 <div class = "topic">
                     <p> Rating </p>
                     <form>
-                        <input type = "radio" id = "oneS" name = "rating">
+                        <input type = "radio" id = "oneS" name = "rating" value="1">
                         <label for = "oneS"> 1 Star </label>
                         <br>
-                        <input type = "radio" id = "twoS" name = "rating">
+                        <input type = "radio" id = "twoS" name = "rating" value="2">
                         <label for = "twoS"> 2 Star </label>
                         <br>
-                        <input type = "radio" id = "threeS" name = "rating">
+                        <input type = "radio" id = "threeS" name = "rating" value="3">
                         <label for = "threeS"> 3 Star </label>
                         <br>
-                        <input type = "radio" id = "fourS" name = "rating">
+                        <input type = "radio" id = "fourS" name = "rating" value="4">
                         <label for = "fourS"> 4 Star </label>
                         <br>
-                        <input type = "radio" id = "fiveS" name = "rating">
+                        <input type = "radio" id = "fiveS" name = "rating" value="5">
                         <label for = "fiveS"> 5 Star </label>
                     </form>
                 </div>
@@ -67,7 +67,7 @@
                     </form>
                 </div>
 
-                <button> Search </button>
+                <button id="searchBtn"> Search </button>
                 <br>
 
                 <!-- Create New Recipe Button: Brings up a pop-up to create a new recipe-->
@@ -87,5 +87,55 @@
                 </div>
             </div>
         </div>
+
+
+
+        <!-- Just testing the search can work -->
+        <script>
+            document.getElementById("searchBtn").addEventListener("click", async () => {
+
+                const rating = document.querySelector('input[name="rating"]:checked')?.value;
+                const mealType = document.querySelector('input[name="mealType"]:checked')?.id;
+
+                const url = new URL("http://localhost:3000/recipes/search");
+
+                if (rating) url.searchParams.append("rating", rating);
+                if (mealType) url.searchParams.append("mealType", mealType);
+
+                console.log(url.toString());
+
+                try {
+                    const res = await fetch(url);
+                    const data = await res.json();
+
+                    console.log(data);
+
+                    const container = document.querySelector(".recipeIndex");
+                    container.innerHTML = "";
+
+                    if (data.length === 0) {
+                        container.innerHTML = "<p>No recipes found</p>";
+                        return;
+                    }
+
+                    data.forEach(recipe => {
+                        const card = document.createElement("div");
+                        card.classList.add("recipeCard");
+
+                        card.innerHTML = `
+                            <h2>${recipe.name}</h2>
+                            <p>${recipe.description || ""}</p>
+                            <p>Cook Time: ${recipe.cook_time} min</p>
+                            <p>Servings: ${recipe.servings}</p>
+                        `;
+
+                        container.appendChild(card);
+                    });
+
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+        </script>        
     </body>
 </html>
