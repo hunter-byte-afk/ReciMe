@@ -37,6 +37,83 @@ body{
 
 
 
+/* Meal Prep Page */
+.prep{
+    display: flex;
+    align-items: flex-start;
+}
+
+.prep .week{
+    display: flex;
+    margin: 25px 75px;
+}
+
+.prepItem{
+    display: flex;
+    background-color: black;
+}
+
+.sun{
+    margin: 0px 10px;
+    color: #D9D9D9;
+    background-color: #504136;
+    width: 175px;
+    height: 500px;
+    text-align: center;
+}
+
+.mon{
+    margin: 0px 10px;
+    color: #D9D9D9;
+    background-color: #504136;
+    width: 175px;
+    text-align: center;
+}
+
+.tue{
+    margin: 0px 10px;
+    color: #D9D9D9;
+    background-color: #504136;
+    width: 175px;
+    text-align: center;
+}
+
+.wed{
+    margin: 0px 10px;
+    color: #D9D9D9;
+    background-color: #504136;
+    width: 175px;
+    text-align: center;
+}
+
+.thur{
+    margin: 0px 10px;
+    color: #D9D9D9;
+    background-color: #504136;
+    width: 175px;
+    text-align: center;
+}
+
+.fri{
+    margin: 0px 10px;
+    color: #D9D9D9;
+    background-color: #504136;
+    width: 175px;
+    text-align: center;
+}   
+
+.sat{
+    margin: 0px 10px;
+    color: #D9D9D9;
+    background-color: #504136;
+    width: 175px;
+    text-align: center;
+}
+
+
+
+
+
 /* Index Page */
 .home{
     display: flex;
@@ -63,6 +140,7 @@ body{
     background-color: #D9D9D9;
     border: 5px solid #504136;
     overflow: hidden;
+    padding-top: 10px;
     padding-left: 10px;
     width: 255px;
 }
