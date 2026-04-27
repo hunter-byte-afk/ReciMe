@@ -205,3 +205,20 @@ body{
 }
 
 
+
+
+
+/* Reviews */
+.reviews img{
+    width: 600px;
+    height: 300px;
+    margin: 50px;
+}
+
+.reviews .rate{
+    background-color: #D9D9D9;
+    border: 10px solid #504136;
+    width: 300px;
+    margin-left: 200px;
+    text-align: center;
+}
