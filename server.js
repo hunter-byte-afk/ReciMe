@@ -6,6 +6,9 @@
 // Mason Eiland
 // Adding some server backend stuff (express) localhost:3000/recipes for now
 
+// Victoria Treviño
+// Connecting a route to html on initial page load.
+
 const express = require('express');
 const cors = require('cors');
 
@@ -19,10 +22,17 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+// static file to route to index.html
+app.use(express.static('html'));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/html/index.html');
+});
+
 // creating connection to database
 const db = mysql.createConnection({
     host: 'localhost',
-    port: 3306,
+    port: 3307, // WHEN VICTORIA IS TESTING ON HER LAPTOP, 3306 MUST BE CHANGED TO 3307!!!
     database: 'recime',
     user: 'root',
     password: 'root'
