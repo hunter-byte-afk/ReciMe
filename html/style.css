@@ -222,3 +222,58 @@ body{
     margin-left: 200px;
     text-align: center;
 }
+
+/* Login */
+.login{
+    background-color: #A49E8D;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    border: 10px solid #504136;
+    margin-top: 50px;
+    margin-left: 300px;
+    margin-right: 300px;
+    min-height: 400px;
+    
+}
+
+.formtext{
+    color:#D9D9D9;
+    margin-left: 325px;
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+
+.form{
+    color: #D9D9D9;
+    margin-top: 50px;
+    margin-left: 310px;
+}
+
+.loggedoutnavbar ul{
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #A49E8D;
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.loggedoutnavbar ul li{
+    float: right;
+    padding: 10px 15px;
+    color:#767676;
+}
+
+.loggedoutnavbar ul li a{
+    color: #D9D9D9;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.loggedoutnavbar .selected{
+    background-color: #689689;
+    color:#D9D9D9;
+}
