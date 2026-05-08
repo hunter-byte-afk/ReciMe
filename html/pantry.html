@@ -89,53 +89,103 @@
         </div>
 
 
-
+        <div id="recipeModal" class="modal">
+            <div class="modalContent">
+                <span id="closeModal">&times;</span>
+                <div id="modalBody"></div>
+            </div>
+        </div>
         <!-- Just testing the search can work -->
         <script>
-            document.getElementById("searchBtn").addEventListener("click", async () => {
 
-                const rating = document.querySelector('input[name="rating"]:checked')?.value;
-                const mealType = document.querySelector('input[name="mealType"]:checked')?.id;
+            // function for loading recipes on page load
+            async function loadRecipes(url = "http://localhost:3000/recipes") {
+                    try {
+                        const res = await fetch(url);
+                        const data = await res.json();
 
-                const url = new URL("http://localhost:3000/recipes/search");
+                        console.log(data);
 
-                if (rating) url.searchParams.append("rating", rating);
-                if (mealType) url.searchParams.append("mealType", mealType);
+                        const container = document.querySelector(".recipeIndex");
+                        container.innerHTML = "";
 
-                console.log(url.toString());
+                        if (data.length === 0) {
+                            container.innerHTML = "<p>No recipes found</p>";
+                            return;
+                        }
 
-                try {
-                    const res = await fetch(url);
-                    const data = await res.json();
+                        // creates cards for each recipe
+                        data.forEach(recipe => {
+                            const card = document.createElement("div");
+                            card.classList.add("recipeCard");
 
-                    console.log(data);
+                            card.innerHTML = `
+                                <h2>${recipe.name}</h2>
+                                <p>${recipe.description || ""}</p>
+                                <p>Cook Time: ${recipe.cook_time} min</p>
+                                <p>Servings: ${recipe.servings}</p>
+                            `;
 
-                    const container = document.querySelector(".recipeIndex");
-                    container.innerHTML = "";
+                            // Click logic, click on card it expands into its own window overlay
+                            card.addEventListener("click", () => {
+                                const modal = document.getElementById("recipeModal");
+                                const modalBody = document.getElementById("modalBody");
 
-                    if (data.length === 0) {
-                        container.innerHTML = "<p>No recipes found</p>";
-                        return;
+                                modalBody.innerHTML = `
+                                    <h1>${recipe.name}</h1>
+                                    <p><strong>Description:</strong> ${recipe.description || ""}</p>
+                                    <p><strong>Cook Time:</strong> ${recipe.cook_time} min</p>
+                                    <p><strong>Prep Time:</strong> ${recipe.prep_time} min</p>
+                                    <p><strong>Servings:</strong> ${recipe.servings}</p>
+                                    <h3>Instructions</h3>
+                                    <p>${recipe.instructions || "No instructions available."}</p>
+                                `;
+
+                                modal.style.display = "block";
+                            });
+
+
+                            container.appendChild(card);
+                        });
+
+                    } catch (err) {
+                        console.error(err);
                     }
-
-                    data.forEach(recipe => {
-                        const card = document.createElement("div");
-                        card.classList.add("recipeCard");
-
-                        card.innerHTML = `
-                            <h2>${recipe.name}</h2>
-                            <p>${recipe.description || ""}</p>
-                            <p>Cook Time: ${recipe.cook_time} min</p>
-                            <p>Servings: ${recipe.servings}</p>
-                        `;
-
-                        container.appendChild(card);
-                    });
-
-                } catch (err) {
-                    console.error(err);
                 }
-            });
+
+
+                // Load all recipes automatically when page opens
+                loadRecipes();
+
+
+                // Search button filtering
+                document.getElementById("searchBtn").addEventListener("click", async () => {
+
+                    const rating = document.querySelector('input[name="rating"]:checked')?.value;
+                    const mealType = document.querySelector('input[name="mealType"]:checked')?.id;
+
+                    const url = new URL("http://localhost:3000/recipes/search");
+
+                    if (rating) url.searchParams.append("rating", rating);
+                    if (mealType) url.searchParams.append("mealType", mealType);
+
+                    console.log(url.toString());
+
+                    loadRecipes(url);
+                });
+
+                // close recipe window logic
+                document.getElementById("closeModal").addEventListener("click", () => {
+                    document.getElementById("recipeModal").style.display = "none"
+                });
+                
+                window.addEventListener("click", (e) => {
+                    const modal = document.getElementById("recipeModal");
+                    if (e.target === modal) {
+                        modal.style.display = "none";
+                    }
+                });
+
         </script>        
     </body>
 </html>
