@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 // creating connection to database
 const db = mysql.createConnection({
     host: 'localhost',
-    port: 3307, // WHEN VICTORIA IS TESTING ON HER LAPTOP, 3306 MUST BE CHANGED TO 3307!!!
+    port: 3306, // WHEN VICTORIA IS TESTING ON HER LAPTOP, 3306 MUST BE CHANGED TO 3307!!!
     database: 'recime',
     user: 'root',
     password: 'root'
@@ -74,7 +74,9 @@ db.connect(function(err) {
         cook_time,
         prep_time,
         servings,
-        instructions
+        instructions,
+        rating,
+        meal_type
     } = req.body;
 
     const sql = `
@@ -91,7 +93,10 @@ db.connect(function(err) {
             parseInt(cook_time) || 0, 
             parseInt(prep_time) || 0, 
             parseInt(servings) || 0, 
-            instructions
+            instructions,
+            parseInt(rating) || 0,
+            meal_type
+
         ],
         (err, result) => {
             if (err) {

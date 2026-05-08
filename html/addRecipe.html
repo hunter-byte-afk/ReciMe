@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <link rel = "stylesheet" href = "style.css">
+    </head>
+    <body>
+        <!-- Navagation Bar Inormation Here -->
+        <div class = "navbar">
+            <ul>
+                <li class = "logout"> <a href = ""> Logout </a></li>
+                <li> <a href = "review.html"> Reviews </a></li>
+                <li> <a href = "pantry.html"> Pantry </a></li>
+                <li> <a href = "prep.html"> Meal Prep </a></li>
+                <li class = "selected"> <a href = "addRecipe.html"> Add Recipe </a></li>
+                <li style = "float: left"> <a href = "index.html"> ReciMe </a></li>
+            </ul>
+        </div>
+
+        <div class="addRecipePage">
+
+            <div class="formContainer">
+                <h1>Add New Recipe</h1>
+
+                <form id="recipeForm">
+                    <input name="name" placeholder="Name">
+                    <input name="description" placeholder="Description">
+                    <select name="meal_type">
+                        <option value="">Select Meal Type</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="desser">Dessert</option>
+                        <option value="snack">Snack</option>
+                    </select>
+
+                    <div class="cookTimes">
+                        <input name="cook_time" placeholder="Cook Time">
+                        <input name="prep_time" placeholder="Prep Time">
+                    </div>
+
+                    <input name="servings" placeholder="Servings">
+
+                    <textarea name="instructions" placeholder="Add Instructions..."></textarea>
+
+                    <button type="submit">Add Recipe</button>
+                </form>
+
+                <p id="status"></p>
+
+            </div>
+
+        </div>
+
+        
+
+    <script>
+            document.getElementById("recipeForm").addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(e.target);
+
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const response = await fetch("http://localhost:3000/recipes", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+                    console.log(result);
+
+                    document.getElementById("status").innerText = "Recipe added successfully! ID: " + result.recipeId;
+
+                    e.target.reset();
+
+                }
+                catch (err) {
+                    console.error(err);
+                    document.getElementById("status").innerText = 
+                    "Error adding recipe";
+                }
+            });
+        </script>
+
+
+    </body>
+
+    
+
+</html>
