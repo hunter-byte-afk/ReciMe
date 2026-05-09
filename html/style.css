@@ -7,7 +7,7 @@ body{
 .navbar ul{
     list-style-type: none;
     overflow: hidden;
-    background-color: #A49E8D;
+    background-color: #504136;
     border: 5px solid #F4F1EA;
     border-radius: 50px;
     margin: 10px 10px 0px 10px;
@@ -156,6 +156,7 @@ body{
     padding: 40px 10px 10px 10px;
     width: 255px;
     box-shadow: 4px 4px 8px #504136;
+    border-radius: 8px;
 }
 
 .pinboard{
@@ -164,11 +165,12 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
-    border: 10px solid #504136;
+    border: 20px solid #504136;
     min-height: 500px;
     width: 900px;
     margin: 50px 90px;
     box-shadow: 4px 4px 8px #504136;
+    border-radius: 8px;
 }
 
 .pinboard .pinItem{
