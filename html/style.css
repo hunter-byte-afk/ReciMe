@@ -8,7 +8,9 @@ body{
     list-style-type: none;
     overflow: hidden;
     background-color: #A49E8D;
-    margin: 0px;
+    border: 5px solid #D9D9D9;
+    border-radius: 50px;
+    margin: 10px 10px 0px 10px;
     padding: 0px;
     font-size: 20px;
     font-weight: bold;
@@ -202,6 +204,11 @@ body{
     flex: 1;
     margin: 15px;
     min-height: 400px;
+}
+
+.recipeCard{
+    background-color: #D9D9D9;
+    margin: 15px;
 }
 
 
