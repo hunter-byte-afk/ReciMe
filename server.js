@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname), {index: false}));
 // creating connection to database
 const db = mysql.createConnection({
     host: 'localhost',
-    port: 3306, // WHEN VICTORIA IS TESTING ON HER LAPTOP, 3306 MUST BE CHANGED TO 3307!!!
+    port: 3306,
     database: 'recime',
     user: 'root',
     password: 'root'

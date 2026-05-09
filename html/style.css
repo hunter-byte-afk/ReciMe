@@ -1,5 +1,5 @@
 body{
-    background-color: #D9D9D9;
+    background-color: #F4F1EA;
     margin: 0px;
     padding: 0px;
 }
@@ -8,7 +8,7 @@ body{
     list-style-type: none;
     overflow: hidden;
     background-color: #A49E8D;
-    border: 5px solid #D9D9D9;
+    border: 5px solid #F4F1EA;
     border-radius: 50px;
     margin: 10px 10px 0px 10px;
     padding: 0px;
@@ -22,7 +22,7 @@ body{
 }
 
 .navbar ul li a{
-    color: #D9D9D9;
+    color: #F4F1EA;
     display: block;
     text-align: center;
     text-decoration: none;
@@ -57,7 +57,7 @@ body{
 
 .sun{
     margin: 0px 10px;
-    color: #D9D9D9;
+    color: #F4F1EA;
     background-color: #504136;
     width: 175px;
     height: 500px;
@@ -66,7 +66,7 @@ body{
 
 .mon{
     margin: 0px 10px;
-    color: #D9D9D9;
+    color: #F4F1EA;
     background-color: #504136;
     width: 175px;
     text-align: center;
@@ -74,7 +74,7 @@ body{
 
 .tue{
     margin: 0px 10px;
-    color: #D9D9D9;
+    color: #F4F1EA;
     background-color: #504136;
     width: 175px;
     text-align: center;
@@ -82,7 +82,7 @@ body{
 
 .wed{
     margin: 0px 10px;
-    color: #D9D9D9;
+    color: #F4F1EA;
     background-color: #504136;
     width: 175px;
     text-align: center;
@@ -90,7 +90,7 @@ body{
 
 .thur{
     margin: 0px 10px;
-    color: #D9D9D9;
+    color: #F4F1EA;
     background-color: #504136;
     width: 175px;
     text-align: center;
@@ -98,7 +98,7 @@ body{
 
 .fri{
     margin: 0px 10px;
-    color: #D9D9D9;
+    color: #F4F1EA;
     background-color: #504136;
     width: 175px;
     text-align: center;
@@ -106,7 +106,7 @@ body{
 
 .sat{
     margin: 0px 10px;
-    color: #D9D9D9;
+    color: #F4F1EA;
     background-color: #504136;
     width: 175px;
     text-align: center;
@@ -123,13 +123,24 @@ body{
 }
 
 .grocery{
-    background-color: #689689;
     width: 275px;
     margin: 25px;
+    margin-left: 100px;
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
+}
+
+.groceryLabel{
+    background-color: #689689;
+    width: 200px;
+    z-index: 2;
+    position: relative;
+    top: 20px;
+    box-shadow: 3px 0px 8px #567a6d;
 }
 
 .grocery h2{
@@ -139,32 +150,36 @@ body{
 }
 
 .grocery .list{
-    background-color: #D9D9D9;
+    background-color: #F4F1EA;
     border: 5px solid #504136;
     overflow: hidden;
-    padding-top: 10px;
-    padding-left: 10px;
+    padding: 40px 10px 10px 10px;
     width: 255px;
+    box-shadow: 4px 4px 8px #504136;
 }
 
 .pinboard{
     background-color: #A49E8D;
     display: flex;
-    flex: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
     border: 10px solid #504136;
-    margin: 20px;
     min-height: 500px;
+    width: 900px;
+    margin: 50px 90px;
+    box-shadow: 4px 4px 8px #504136;
 }
 
 .pinboard .pinItem{
-    background-color: #D9D9D9;
+    background-color: #F4F1EA;
     width: 200px;
     height: 200px;
     margin: 25px;
-    margin-left: 120px;
     overflow: hidden;
     display: flex;
     flex: wrap;
+    box-shadow: 4px 4px 16px #504136
 }
 
 
@@ -187,7 +202,7 @@ body{
 }
 
 .search .topic{
-    background-color: #D9D9D9;
+    background-color: #F4F1EA;
     margin: 5px;
     width: 150px;
 }
@@ -211,7 +226,7 @@ body{
 }
 
 .recipeCard{
-    background-color: #D9D9D9;
+    background-color: #F4F1EA;
     width: 250px;
     min-height: 220px;
     border-radius: 12px;
@@ -239,7 +254,7 @@ body{
 }
 
 .modalContent{
-    background-color: #D9D9D9;
+    background-color: #F4F1EA;
     margin: 5% auto;
     padding: 25px;
     width: 60%;
@@ -269,7 +284,7 @@ body{
 }
 
 .reviews .rate{
-    background-color: #D9D9D9;
+    background-color: #F4F1EA;
     border: 10px solid #504136;
     width: 300px;
     margin-left: 200px;
@@ -295,7 +310,7 @@ body{
 
 .formContainer h1{
     text-align: center;
-    color: #D9D9D9;
+    color: #F4F1EA;
     margin-bottom: 25px;
     font-size: 32px;
 }
@@ -312,7 +327,7 @@ body{
     border: 3px solid #504136;
     border-radius: 8px;
     font-size: 16px;
-    background-color: #D9D9D9;
+    background-color: #F4F1EA;
     box-sizing: border-box;
 }
 
@@ -350,8 +365,10 @@ body{
     margin-top: 20px;
     text-align: center;
     font-weight: bold;
-    color: #D9D9D9;
+    color: #F4F1EA;
     font-size: 18px;
+}
+
 /* Login */
 .login{
     background-color: #A49E8D;
@@ -367,14 +384,14 @@ body{
 }
 
 .formtext{
-    color:#D9D9D9;
+    color:#F4F1EA;
     margin-left: 325px;
     margin-top: 100px;
     margin-bottom: 10px;
 }
 
 .form{
-    color: #D9D9D9;
+    color: #F4F1EA;
     margin-top: 50px;
     margin-left: 310px;
 }
@@ -396,7 +413,7 @@ body{
 }
 
 .loggedoutnavbar ul li a{
-    color: #D9D9D9;
+    color: #F4F1EA;
     display: block;
     text-align: center;
     text-decoration: none;
@@ -404,5 +421,5 @@ body{
 
 .loggedoutnavbar .selected{
     background-color: #689689;
-    color:#D9D9D9;
+    color:#F4F1EA;
 }
