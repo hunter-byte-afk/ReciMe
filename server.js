@@ -9,8 +9,12 @@
 // Victoria Treviño
 // Connecting a route to html on initial page load.
 
+//Logan Bales
+// Added backend routes for user database
+
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 // importing mysql module
 const mysql = require('mysql2');
@@ -28,6 +32,8 @@ app.use(express.static('html'));
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/html/index.html');
 });
+app.use(express.static(path.join(__dirname), {index: false}));
+
 
 // creating connection to database
 const db = mysql.createConnection({
@@ -138,6 +144,63 @@ db.connect(function(err) {
         }
         res.json(results);
     });
+  });
+
+  app.get('/users', (req, res) => {
+    db.query('SELECT * FROM users', (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.json(results);
+    });
+  });
+
+  app.get('/users/search', (req, res) => {
+    const {user_id, username} = req.query;
+
+    db.query('SELECT * FROM users WHERE username = "${username}"', (err, results) => {
+        if(err){
+            return res.status(500).json(err);
+        }
+        res.json(results);
+    });
+  });
+
+  //used for login, other routes are not used.
+  app.post('/users', (req,res) => {
+    const {name} = req.body;
+
+    //checking if user already in db
+    db.query('SELECT * FROM users WHERE username = ?', [name], (err, results) => {
+        if(err){
+            return res.status(500).json(err);
+        }
+        
+        console.log(results);
+        if(results.length > 0){
+            return res.json(results); //user already in db, don't insert to avoid error
+        }
+
+        //user not in db, add them
+        db.query(
+        'INSERT INTO users (username) VALUES (?)',[name],
+        (err,result) => {
+            if (err){
+                return res.status(500).json(err);
+            }
+            res.json({
+                message: "User added successfully." 
+            });
+            console.log(result);
+        }
+    );
+    });
+
+    
+  });
+
+  app.get('/', (req,res) => {
+    res.sendFile(path.join(__dirname, 'html', 'login.html'));
   });
 
   //start server
