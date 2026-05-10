@@ -4,6 +4,10 @@ body{
     padding: 0px;
 }
 
+button{
+    cursor: pointer;
+}
+
 .navbar ul{
     list-style-type: none;
     overflow: hidden;
@@ -28,8 +32,16 @@ body{
     text-decoration: none;
 }
 
+.navbar ul li:hover{
+    background-color: #767676;
+}
+
 .navbar .logout a{
     color: #DA4167;
+}
+
+.navbar .logout ul li:hover{
+    color: #541424;
 }
 
 .navbar .selected{
@@ -122,6 +134,22 @@ body{
     align-items: flex-start;
 }
 
+#overlay{
+   position: fixed;
+   background-color: #567a6d65; 
+   display: none;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   z-index: 3;
+   cursor: pointer;
+}
+
+.addOverlay{
+    cursor: pointer;
+}
+
 .grocery{
     width: 275px;
     margin: 25px;
@@ -181,7 +209,23 @@ body{
     overflow: hidden;
     display: flex;
     flex: wrap;
-    box-shadow: 4px 4px 16px #504136
+    box-shadow: 4px 4px 16px #504136;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pinItem button{
+    width: 200px;
+    height: 200px;
+    background-color: #F4F1EA;
+    border: none;
+    font-size: 50px;
+}
+
+.pinItem button:hover{
+    color: #F4F1EA;
+    background-color: #689689;
 }
 
 
@@ -213,6 +257,10 @@ body{
     font-weight: bold;
     text-align: center;
 }
+
+
+
+
 
 /* PANTRY: Recipe Index/Search Results*/
 .recipeIndex{
@@ -278,6 +326,10 @@ body{
     color: #504136;
 }
 
+
+
+
+
 /* Reviews */
 .reviews img{
     width: 600px;
@@ -294,11 +346,18 @@ body{
 }
 
 
+
+
+
+
 /* addRecipe */
 .addRecipePage{
     display: flex;
     justify-content: center;
     padding: 40px;
+    display: none;
+    z-index: 4;
+    position: absolute;
 }
 
 .formContainer{
@@ -370,6 +429,36 @@ body{
     color: #F4F1EA;
     font-size: 18px;
 }
+
+/*Additions for overlay*/
+.addRecipePage #recipePage{
+    display: none;
+    z-index: 3;
+    position: fixed;
+    justify-content: center;
+    
+}
+
+.addRecipeBtn{
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+    color: #F4F1EA;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    display: block;
+}
+
+.addRecipeBtn:hover{
+    background-color: #767676;
+}
+
+
+
+
+
 
 /* Login */
 .login{
