@@ -69,59 +69,97 @@ button{
 
 .sun{
     margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
+    color: #505050;
+    background-color: #F4F1EA;
+    border: 5px solid #504136;
+    border-radius: 10px;
+    width: 160px;
     height: 500px;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: 4px 4px 8px #567a6d;
 }
 
 .mon{
     margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
+    color: #567a6d;
+    background-color: #F4F1EA;
+    border: 5px solid #567a6d;
+    border-radius: 10px;
+    width: 160px;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: 4px 4px 8px #567a6d;
 }
 
 .tue{
     margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
+    color: #505050;
+    background-color: #F4F1EA;
+    border: 5px solid #504136;
+    border-radius: 10px;
+    width: 160px;
+    height: 500px;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: 4px 4px 8px #567a6d;
 }
 
 .wed{
     margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
+    color: #567a6d;
+    background-color: #F4F1EA;
+    border: 5px solid #567a6d;
+    border-radius: 10px;
+    width: 160px;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: 4px 4px 8px #567a6d;
 }
 
 .thur{
     margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
+    color: #505050;
+    background-color: #F4F1EA;
+    border: 5px solid #504136;
+    border-radius: 10px;
+    width: 160px;
+    height: 500px;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: 4px 4px 8px #504136;
 }
 
 .fri{
     margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
+    color: #567a6d;
+    background-color: #F4F1EA;
+    border: 5px solid #567a6d;
+    border-radius: 10px;
+    width: 160px;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: 4px 4px 8px #567a6d;
 }   
 
 .sat{
     margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
+    color: #505050;
+    background-color: #F4F1EA;
+    border: 5px solid #504136;
+    border-radius: 10px;
+    width: 160px;
+    height: 500px;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: 4px 4px 8px #504136;
 }
 
 
