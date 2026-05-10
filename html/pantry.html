@@ -192,7 +192,7 @@
                     } catch (err) {
                         console.error(err);
                     }
-                }
+                } // end load recipes function
 
 
                 // Load all recipes automatically when page opens
@@ -261,6 +261,8 @@
                     document.getElementById("status").innerText = "Recipe added successfully! ID: " + result.recipeId;
 
                     e.target.reset();
+
+                    loadRecipes();
 
                 }
                 catch (err) {

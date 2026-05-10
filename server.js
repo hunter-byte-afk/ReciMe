@@ -82,7 +82,8 @@ db.connect(function(err) {
         servings,
         instructions,
         rating,
-        meal_type
+        meal_type,
+        ingredients
     } = req.body;
 
     const sql = `
@@ -124,7 +125,7 @@ db.connect(function(err) {
     let params = [];
 
     if (rating) {
-        sql += " AND rating = ?";
+        sql += " AND rating >= ?";
         params.push(rating);
     }
 
