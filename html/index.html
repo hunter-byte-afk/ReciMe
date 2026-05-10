@@ -33,7 +33,7 @@
                         <option value="breakfast">Breakfast</option>
                         <option value="lunch">Lunch</option>
                         <option value="dinner">Dinner</option>
-                        <option value="desser">Dessert</option>
+                        <option value="dessert">Dessert</option>
                         <option value="snack">Snack</option>
                     </select>
 
@@ -43,6 +43,15 @@
                     </div>
 
                     <input name="servings" placeholder="Servings">
+                    
+                    <select name="rating">
+                        <option value="">Select Rating</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Star</option>
+                        <option value="3">3 Star</option>
+                        <option value="4">4 Star</option>
+                        <option value="5">5 Star</option>
+                    </select>
 
                     <textarea name="instructions" placeholder="Add Instructions..."></textarea>
 
@@ -64,9 +73,9 @@
 
                 <div class = "list">
                     <input type = "text" id = "newItem" name = "item" placeholder= "New item...">
-                    <button> Add Item </button>
+                    <button type="button"> Add Item </button>
 
-                    <ul>
+                    <ul id="groceryList">
                     <li> Sugar </li> 
                     <li> Cinnamon </li>
                     <li> Rice </li>
@@ -128,6 +137,65 @@
                     "Error adding recipe";
                 }
             });
+
+            document.querySelector(".list button").addEventListener("click", async () => {
+                const input = document.getElementById("newItem");
+
+                const data = input.value.trim();
+    
+                try {
+                    const response = await fetch("http://localhost:3000/ingredients", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            name: data
+                        })
+                    });
+
+                    const result = await response.json();
+                    console.log(result);
+
+                    input.value = ""; // clear input
+                    loadIngredients(); // refresh list
+
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+
+            async function loadIngredients() {
+                try {
+                    const res = await fetch('/ingredients');
+                    const data = await res.json()
+
+                    const list = document.getElementById('groceryList');
+                    list.innerHTML = '';
+
+                    data.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item.name + " ";
+
+                        const dltBtn = document.createElement('button');
+                        dltBtn.textContent = "X";
+
+                        dltBtn.addEventListener("click", async () => {
+                            await fetch(`http://localhost:3000/ingredients/${item.ingredient_id}`, {
+                                method: "DELETE"
+                            });
+                            loadIngredients() // reloads ingredient list after delete
+                        });
+                        li.appendChild(dltBtn); // adds delete button to ingredient item
+                        list.appendChild(li); // adds ingredient item to groceryList
+                    });
+                }
+                catch (err) {
+                    console.error('Error loading ingredients: ', err);
+                }
+            }
+
+            loadIngredients();
         </script>
 
     </body>

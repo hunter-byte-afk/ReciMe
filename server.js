@@ -5,6 +5,7 @@
 
 // Mason Eiland
 // Adding some server backend stuff (express) localhost:3000/recipes for now
+// Get Recipes, Add Recipes, Search Recipes logic
 
 // Victoria Treviño
 // Connecting a route to html on initial page load.
@@ -60,8 +61,7 @@ db.connect(function(err) {
     console.log('Query results:', results);
   });
 
-
-  // test route same thing as the db.query above just done on the server side
+  // ------- RECIPES -------
   // Retrieves all recipes
   app.get('/recipes', (req, res) => {
     db.query('SELECT * FROM recipes', (err, results) => {
@@ -145,6 +145,59 @@ db.connect(function(err) {
         res.json(results);
     });
   });
+
+
+// ------ INGREDIENTS -------
+
+app.get('/ingredients', (req, res) => {
+    db.query('SELECT * FROM ingredients', (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.json(results);
+    });
+});
+
+app.post('/ingredients', (req, res) => {
+    const {name} = req.body;
+    const sql = `
+            INSERT INTO ingredients
+            (name)
+            VALUES (?)
+        `;
+
+    db.query(sql, [name], (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        } 
+        res.json({
+            ingredient_id: results.insertId,
+            name
+        });
+    });
+
+});
+
+app.delete('/ingredients/:id', (req, res) => {
+    const {id} = req.params;
+
+    const sql = `
+        DELETE FROM ingredients
+        WHERE ingredient_id = ?
+    `;
+
+    db.query(sql, [id], (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.json({
+            message: "Ingredient deleted",
+            affectedRows: results.affectedRows
+        });
+    });
+});
+
+// ----- USERS ------
 
   app.get('/users', (req, res) => {
     db.query('SELECT * FROM users', (err, results) => {
