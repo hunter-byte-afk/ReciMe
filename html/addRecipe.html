@@ -23,13 +23,14 @@
                 <form id="recipeForm">
                     <input name="name" placeholder="Name">
                     <input name="description" placeholder="Description">
+                    
                     <select name="meal_type">
                         <option value="">Select Meal Type</option>
-                        <option value="breakfast">Breakfast</option>
-                        <option value="lunch">Lunch</option>
-                        <option value="dinner">Dinner</option>
-                        <option value="desser">Dessert</option>
-                        <option value="snack">Snack</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Snack">Snack</option>
                     </select>
 
                     <div class="cookTimes">
@@ -39,9 +40,18 @@
 
                     <input name="servings" placeholder="Servings">
 
+                    <select name="rating">
+                        <option value="">Select Rating</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Star</option>
+                        <option value="3">3 Star</option>
+                        <option value="4">4 Star</option>
+                        <option value="5">5 Star</option>
+                    </select>
+
                     <textarea name="instructions" placeholder="Add Instructions..."></textarea>
 
-                    <button type="submit">Add Recipe</button>
+                    <button type="button" class="addRecipeBtn" onclick="on()">Add Recipe</button>
                 </form>
 
                 <p id="status"></p>
@@ -60,6 +70,8 @@
 
                 const data = Object.fromEntries(formData.entries());
 
+                // console.log(data);
+
                 try {
                     const response = await fetch("http://localhost:3000/recipes", {
                         method: "POST",
@@ -70,7 +82,7 @@
                     });
 
                     const result = await response.json();
-                    console.log(result);
+                    // console.log(result);
 
                     document.getElementById("status").innerText = "Recipe added successfully! ID: " + result.recipeId;
 

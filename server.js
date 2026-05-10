@@ -76,7 +76,7 @@ db.connect(function(err) {
   app.post('/recipes', (req, res) => {
     const {
         name,
-        desciption,
+        description,
         cook_time,
         prep_time,
         servings,
@@ -87,15 +87,15 @@ db.connect(function(err) {
 
     const sql = `
         INSERT INTO recipes
-        (name, description, cook_time, prep_time, servings, instructions)
-        VALUES (?, ?, ?, ?, ?, ?)
+        (name, description, cook_time, prep_time, servings, instructions, rating, meal_type)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.query(
         sql,
         [
             name, 
-            desciption, 
+            description, 
             parseInt(cook_time) || 0, 
             parseInt(prep_time) || 0, 
             parseInt(servings) || 0, 

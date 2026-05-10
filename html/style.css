@@ -397,12 +397,12 @@ button{
     resize: vertical;
 }
 
-.timeFields{
+.cookTimes{
     display: flex;
     gap: 15px;
 }
 
-.timeFields input{
+.cookTimes input{
     flex: 1;
 }
 
