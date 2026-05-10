@@ -433,10 +433,8 @@ button{
 /*Additions for overlay*/
 .addRecipePage #recipePage{
     display: none;
-    z-index: 3;
     position: fixed;
     justify-content: center;
-    
 }
 
 .addRecipeBtn{
