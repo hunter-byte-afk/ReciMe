@@ -134,22 +134,6 @@ button{
     align-items: flex-start;
 }
 
-#overlay{
-   position: fixed;
-   background-color: #567a6d65; 
-   display: none;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   z-index: 3;
-   cursor: pointer;
-}
-
-.addOverlay{
-    cursor: pointer;
-}
-
 .grocery{
     width: 275px;
     margin: 25px;
@@ -208,7 +192,6 @@ button{
     margin: 25px;
     overflow: hidden;
     display: flex;
-    flex: wrap;
     box-shadow: 4px 4px 16px #504136;
     display: flex;
     justify-content: center;
@@ -352,18 +335,22 @@ button{
 
 /* addRecipe */
 .addRecipePage{
-    display: flex;
-    justify-content: center;
-    padding: 40px;
     display: none;
     z-index: 4;
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #1b30288b;
 }
 
 .formContainer{
     background-color: #A49E8D;
     width: 700px;
-    padding: 30px;
+    padding: 5px;
     border-radius: 15px;
     border: 8px solid #504136;
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
@@ -428,13 +415,6 @@ button{
     font-weight: bold;
     color: #F4F1EA;
     font-size: 18px;
-}
-
-/*Additions for overlay*/
-.addRecipePage #recipePage{
-    display: none;
-    position: fixed;
-    justify-content: center;
 }
 
 .addRecipeBtn{
