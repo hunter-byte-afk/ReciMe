@@ -5,9 +5,17 @@
 
 // Mason Eiland
 // Adding some server backend stuff (express) localhost:3000/recipes for now
+// Get Recipes, Add Recipes, Search Recipes logic
+
+// Victoria Treviño
+// Connecting a route to html on initial page load.
+
+//Logan Bales
+// Added backend routes for user database
 
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 // importing mysql module
 const mysql = require('mysql2');
@@ -19,13 +27,22 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/html/login.html');
+});
+
+// static file to route to index.html
+app.use(express.static('html'));
+app.use(express.static(path.join(__dirname), {index: false}));
+
+
 // creating connection to database
 const db = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     database: 'recime',
-    user: 'root',
-    password: 'root'
+    user: 'recime',
+    password: ''
 });
 
 db.connect(function(err) {
@@ -44,8 +61,7 @@ db.connect(function(err) {
     console.log('Query results:', results);
   });
 
-
-  // test route same thing as the db.query above just done on the server side
+  // ------- RECIPES -------
   // Retrieves all recipes
   app.get('/recipes', (req, res) => {
     db.query('SELECT * FROM recipes', (err, results) => {
@@ -60,28 +76,36 @@ db.connect(function(err) {
   app.post('/recipes', (req, res) => {
     const {
         name,
-        desciption,
+        description,
         cook_time,
         prep_time,
         servings,
-        instructions
+        instructions,
+        rating,
+        meal_type,
+        ingredients,
+        added_by
     } = req.body;
 
     const sql = `
         INSERT INTO recipes
-        (name, description, cook_time, prep_time, servings, instructions)
-        VALUES (?, ?, ?, ?, ?, ?)
+        (name, description, cook_time, prep_time, servings, instructions, rating, meal_type, added_by)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.query(
         sql,
         [
             name, 
-            desciption, 
+            description, 
             parseInt(cook_time) || 0, 
             parseInt(prep_time) || 0, 
             parseInt(servings) || 0, 
-            instructions
+            instructions,
+            parseInt(rating) || 0,
+            meal_type,
+            added_by || "Unknown"
+
         ],
         (err, result) => {
             if (err) {
@@ -103,7 +127,7 @@ db.connect(function(err) {
     let params = [];
 
     if (rating) {
-        sql += " AND rating = ?";
+        sql += " AND rating >= ?";
         params.push(rating);
     }
 
@@ -123,6 +147,116 @@ db.connect(function(err) {
         }
         res.json(results);
     });
+  });
+
+
+// ------ INGREDIENTS -------
+
+app.get('/ingredients', (req, res) => {
+    db.query('SELECT * FROM ingredients', (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.json(results);
+    });
+});
+
+app.post('/ingredients', (req, res) => {
+    const {name} = req.body;
+    const sql = `
+            INSERT INTO ingredients
+            (name)
+            VALUES (?)
+        `;
+
+    db.query(sql, [name], (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        } 
+        res.json({
+            ingredient_id: results.insertId,
+            name
+        });
+    });
+
+});
+
+app.delete('/ingredients/:id', (req, res) => {
+    const {id} = req.params;
+
+    const sql = `
+        DELETE FROM ingredients
+        WHERE ingredient_id = ?
+    `;
+
+    db.query(sql, [id], (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.json({
+            message: "Ingredient deleted",
+            affectedRows: results.affectedRows
+        });
+    });
+});
+
+// ----- USERS ------
+
+  app.get('/users', (req, res) => {
+    db.query('SELECT * FROM users', (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.json(results);
+    });
+  });
+
+  app.get('/users/search', (req, res) => {
+    const {user_id, username} = req.query;
+
+    db.query('SELECT * FROM users WHERE username = "${username}"', (err, results) => {
+        if(err){
+            return res.status(500).json(err);
+        }
+        res.json(results);
+    });
+  });
+
+  //used for login, other routes are not used.
+  app.post('/users', (req,res) => {
+    const {name} = req.body;
+
+    //checking if user already in db
+    db.query('SELECT * FROM users WHERE username = ?', [name], (err, results) => {
+        if(err){
+            return res.status(500).json(err);
+        }
+        
+        console.log(results);
+        if(results.length > 0){
+            return res.json(results); //user already in db, don't insert to avoid error
+        }
+
+        //user not in db, add them
+        db.query(
+        'INSERT INTO users (username) VALUES (?)',[name],
+        (err,result) => {
+            if (err){
+                return res.status(500).json(err);
+            }
+            res.json({
+                message: "User added successfully." 
+            });
+            console.log(result);
+        }
+    );
+    });
+
+    
+  });
+
+  app.get('/', (req,res) => {
+    res.sendFile(path.join(__dirname, 'html', 'login.html'));
   });
 
   //start server

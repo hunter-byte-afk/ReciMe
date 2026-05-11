@@ -1,20 +1,76 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel = "stylesheet" href = "style.css">
+        <link rel = "stylesheet" href = "/style.css">
     </head>
     <body>
         <!-- Navagation Bar Inormation Here -->
         <div class = "navbar">
             <ul>
-                <li class = "logout"> <a href = ""> Logout </a></li>
-                <li> <a href = "review.html"> Reviews </a></li>
+                <li class = "logout"> <a href = "/"> Logout </a></li>
                 <li class = "selected"> <a href = "pantry.html"> Pantry </a></li>
                 <li> <a href = "prep.html"> Meal Prep </a></li>
-                <li> <a href = "/homepage.html"> Add Recipe </a></li>
+                <li> <button class = "addRecipeBtn" onclick = "on()"> Add Recipe </button></li>
                 <li style = "float: left"> <a href = "/index.html"> ReciMe </a></li>
             </ul>
         </div>
+
+        <!-- Add Recipe Overlay -->
+        <div id = "overlay" onclick = "off()"></div>
+
+        <!-- Transfered html from "addRecipe.html that was coded by Mason "-->
+        <div class="addRecipePage" id = "recipePage" onclick = "off()">
+
+            <div class="formContainer">
+                <h1>Add New Recipe</h1>
+
+                <form id="recipeForm">
+                    <input name="name" placeholder="Name">
+                    <input name="description" placeholder="Description">
+                    <select name="meal_type">
+                        <option value="">Select Meal Type</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="snack">Snack</option>
+                    </select>
+
+                    <div class="cookTimes">
+                        <input name="cook_time" placeholder="Cook Time">
+                        <input name="prep_time" placeholder="Prep Time">
+                    </div>
+
+                    <input name="servings" placeholder="Servings">
+
+                    <select name="rating">
+                        <option value="">Select Rating</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Star</option>
+                        <option value="3">3 Star</option>
+                        <option value="4">4 Star</option>
+                        <option value="5">5 Star</option>
+                    </select>
+
+                    <textarea name="instructions" placeholder="Add Instructions..."></textarea>
+
+                    <button type="submit">Add Recipe</button>
+                </form>
+
+            </div>
+
+        </div>
+         
+        <!-- Basic search buttons
+        <div class = basicFilter>
+            <button onclick = "filterClasses('all')"> All </button>
+            <button onclick = "filterClasses('breakfast')"> Breakfast </button>
+            <button onclick = "filterClasses('lunch')"> Lunch </button>
+            <button onclick = "filterClasses('dinner')"> Dinner </button>
+            <button onclick = "filterClasses('dessert')"> Dessert </button>
+            <button onclick = "filterClasses('snack')"> Snacks </button>
+        </div>
+        -->
 
         <div class = "pantry">
             <!-- Search section to gather specfic recipes. -->
@@ -22,61 +78,45 @@
                 <br>
                 <div class = "topic">
                     <p> Rating </p>
-                    <form>
-                        <input type = "radio" id = "oneS" name = "rating" value="1">
-                        <label for = "oneS"> 1 Star </label>
-                        <br>
-                        <input type = "radio" id = "twoS" name = "rating" value="2">
-                        <label for = "twoS"> 2 Star </label>
-                        <br>
-                        <input type = "radio" id = "threeS" name = "rating" value="3">
-                        <label for = "threeS"> 3 Star </label>
-                        <br>
-                        <input type = "radio" id = "fourS" name = "rating" value="4">
-                        <label for = "fourS"> 4 Star </label>
-                        <br>
-                        <input type = "radio" id = "fiveS" name = "rating" value="5">
-                        <label for = "fiveS"> 5 Star </label>
-                    </form>
-                </div>
-
-                <div class = "topic">
-                    <p> Items </p>
-                    <form>
-
-                    </form>
+                    <select id="ratingSelect">
+                        <option value="">Any Rating</option>
+                        <option value="1">1 Star and above</option>
+                        <option value="2">2 Stars and above</option>
+                        <option value="3">3 Stars and above</option>
+                        <option value="4">4 Stars and above</option>
+                        <option value="5">5 Stars</option>
+                    </select>
                 </div>
 
                 <div class = "topic">
                     <p> Meal Type </p>
-                    <form>
-                        <input type = "radio" id = "breakfast" name = "mealType">
-                        <label for = "breakfast"> Brakfast </label>
+                    <form id="mealTypeForm">
+                        <input type = "checkbox" id = "breakfast" name = "mealType" value="Breakfast">
+                        <label for = "breakfast"> Breakfast </label>
                         <br>
-                        <input type = "radio" id = "lunch" name = "mealType">
+                        <input type = "checkbox" id = "lunch" name = "mealType" value="Lunch">
                         <label for = "lunch"> Lunch </label>
                         <br>
-                        <input type = "radio" id = "dinner" name = "mealType">
+                        <input type = "checkbox" id = "dinner" name = "mealType" value="Dinner">
                         <label for = "dinner"> Dinner </label>
                         <br>
-                        <input type = "radio" id = "dessert" name = "mealType">
-                        <label for = "dessert"> Desert </label>
+                        <input type = "checkbox" id = "dessert" name = "mealType" value="Dessert">
+                        <label for = "dessert"> Dessert </label>
                         <br>
-                        <input type = "radio" id = "snack" name = "mealType">
+                        <input type = "checkbox" id = "snack" name = "mealType" value="Snack">
                         <label for = "snack"> Snack </label>
                     </form>
                 </div>
 
                 <button id="searchBtn"> Search </button>
                 <br>
-
-                <!-- Create New Recipe Button: Brings up a pop-up to create a new recipe-->
-                <div class = "createRecipe">
-                    <button>Create New Recipe</button>
-                </div>
-                <br>
             </div>
             
+            <!-- Main buttons for general sections -->
+            <div class = "searchBtn">
+
+            </div>
+
             <!-- Container for laying out all or specific recipes. -->
             <div class = "recipeIndex">
                 <div class = "recipeCard">
@@ -89,51 +129,145 @@
         </div>
 
 
-
+        <div id="recipeModal" class="modal">
+            <div class="modalContent">
+                <span id="closeModal">&times;</span>
+                <div id="modalBody"></div>
+            </div>
+        </div>
         <!-- Just testing the search can work -->
         <script>
-            document.getElementById("searchBtn").addEventListener("click", async () => {
 
-                const rating = document.querySelector('input[name="rating"]:checked')?.value;
-                const mealType = document.querySelector('input[name="mealType"]:checked')?.id;
+            // function for loading recipes on page load
+            async function loadRecipes(url = "http://localhost:3000/recipes") {
+                    try {
+                        const res = await fetch(url);
+                        const data = await res.json();
 
-                const url = new URL("http://localhost:3000/recipes/search");
+                        console.log(data);
 
-                if (rating) url.searchParams.append("rating", rating);
-                if (mealType) url.searchParams.append("mealType", mealType);
+                        const container = document.querySelector(".recipeIndex");
+                        container.innerHTML = "";
 
-                console.log(url.toString());
+                        if (data.length === 0) {
+                            container.innerHTML = "<p>No recipes found</p>";
+                            return;
+                        }
 
-                try {
-                    const res = await fetch(url);
-                    const data = await res.json();
+                        // creates cards for each recipe
+                        data.forEach(recipe => {
+                            const card = document.createElement("div");
+                            card.classList.add("recipeCard");
 
-                    console.log(data);
+                            card.innerHTML = `
+                                <h2>${recipe.name}</h2>
+                                <p>${recipe.description || ""}</p>
+                                <p>Cook Time: ${recipe.cook_time} min</p>
+                                <p>Servings: ${recipe.servings}</p>
+                            `;
 
-                    const container = document.querySelector(".recipeIndex");
-                    container.innerHTML = "";
+                            // Click logic, click on card it expands into its own window overlay
+                            card.addEventListener("click", () => {
+                                const modal = document.getElementById("recipeModal");
+                                const modalBody = document.getElementById("modalBody");
 
-                    if (data.length === 0) {
-                        container.innerHTML = "<p>No recipes found</p>";
-                        return;
+                                modalBody.innerHTML = `
+                                    <h1>${recipe.name}</h1>
+                                    <p><strong>Added by:</strong> ${recipe.added_by || "Unknown"}</p>
+                                    <p><strong>Description:</strong> ${recipe.description || ""}</p>
+                                    <p><strong>Cook Time:</strong> ${recipe.cook_time} min</p>
+                                    <p><strong>Prep Time:</strong> ${recipe.prep_time} min</p>
+                                    <p><strong>Servings:</strong> ${recipe.servings}</p>
+                                    <h3>Instructions</h3>
+                                    <p>${recipe.instructions || "No instructions available."}</p>
+                                `;
+
+                                modal.style.display = "block";
+                            });
+
+
+                            container.appendChild(card);
+                        });
+
+                    } catch (err) {
+                        console.error(err);
                     }
+                } // end load recipes function
 
-                    data.forEach(recipe => {
-                        const card = document.createElement("div");
-                        card.classList.add("recipeCard");
 
-                        card.innerHTML = `
-                            <h2>${recipe.name}</h2>
-                            <p>${recipe.description || ""}</p>
-                            <p>Cook Time: ${recipe.cook_time} min</p>
-                            <p>Servings: ${recipe.servings}</p>
-                        `;
+                // Load all recipes automatically when page opens
+                loadRecipes();
 
-                        container.appendChild(card);
+
+                // Search button filtering
+                document.getElementById("searchBtn").addEventListener("click", async () => {
+
+                    const rating = document.getElementById("ratingSelect").value;
+                    const mealTypeCheckboxes = document.querySelectorAll('input[name="mealType"]:checked');
+                    const mealTypes = Array.from(mealTypeCheckboxes).map(cb => cb.value);
+
+                    const url = new URL("http://localhost:3000/recipes/search");
+
+                    if (rating) url.searchParams.append("rating", rating);
+                    mealTypes.forEach(mt => url.searchParams.append("mealType", mt));
+
+                    console.log(url.toString());
+
+                    loadRecipes(url);
+                });
+
+                // close recipe window logic
+                document.getElementById("closeModal").addEventListener("click", () => {
+                    document.getElementById("recipeModal").style.display = "none"
+                });
+                
+                window.addEventListener("click", (e) => {
+                    const modal = document.getElementById("recipeModal");
+                    if (e.target === modal) {
+                        modal.style.display = "none";
+                    }
+                });
+
+            /*Overlay*/
+            function on(){
+                document.getElementById("recipePage").style.display = "flex";
+            }
+
+            function off(){
+                document.getElementById("recipePage").style.display = "none";
+            }
+
+            /* Script code below was done by Mason */
+            document.getElementById("recipeForm").addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(e.target);
+
+                const data = Object.fromEntries(formData.entries());
+                data.added_by = localStorage.getItem('username') || 'Unknown';
+                console.log(data)
+                try {
+                    const response = await fetch("http://localhost:3000/recipes", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
                     });
 
-                } catch (err) {
+                    const result = await response.json();
+                    // console.log(result);
+
+                    e.target.reset();
+
+                    loadRecipes();
+                    off();
+
+                }
+                catch (err) {
                     console.error(err);
+                    document.getElementById("status").innerText = 
+                    "Error adding recipe";
                 }
             });
         </script>        

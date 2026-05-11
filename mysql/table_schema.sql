@@ -1,4 +1,4 @@
--- create schema recime;
+create schema recime;
 use recime;
 CREATE TABLE recipes (
     recipe_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -41,3 +41,4 @@ CREATE TABLE pantry (
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id) ON DELETE CASCADE
 );
 
+ALTER TABLE recipes ADD COLUMN added_by VARCHAR(255);

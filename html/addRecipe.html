@@ -1,26 +1,21 @@
-<!DOCTYPE html>
 <html>
     <head>
-        <link rel = "stylesheet" href = "/style.css">
+        <link rel = "stylesheet" href = "style.css">
     </head>
     <body>
         <!-- Navagation Bar Inormation Here -->
         <div class = "navbar">
             <ul>
                 <li class = "logout"> <a href = "/"> Logout </a></li>
-                <li class = "selected"> <a href = "review.html"> Reviews </a></li>
+                <li> <a href = "review.html"> Reviews </a></li>
                 <li> <a href = "pantry.html"> Pantry </a></li>
                 <li> <a href = "prep.html"> Meal Prep </a></li>
                 <li> <button class = "addRecipeBtn" onclick = "on()"> Add Recipe </button></li>
-                <li style = "float: left"> <a href = "/index.html"> ReciMe </a></li>
+                <li style = "float: left"> <a href = "index.html"> ReciMe </a></li>
             </ul>
         </div>
 
-        <!-- Add Recipe Overlay -->
-        <div id = "overlay" onclick = "off()"></div>
-
-        <!-- Transfered html from "addRecipe.html that was coded by Mason "-->
-        <div class="addRecipePage" id = "recipePage">
+        <div class="addRecipePage">
 
             <div class="formContainer">
                 <h1>Add New Recipe</h1>
@@ -28,13 +23,14 @@
                 <form id="recipeForm">
                     <input name="name" placeholder="Name">
                     <input name="description" placeholder="Description">
+                    
                     <select name="meal_type">
                         <option value="">Select Meal Type</option>
-                        <option value="breakfast">Breakfast</option>
-                        <option value="lunch">Lunch</option>
-                        <option value="dinner">Dinner</option>
-                        <option value="desser">Dessert</option>
-                        <option value="snack">Snack</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Snack">Snack</option>
                     </select>
 
                     <div class="cookTimes">
@@ -43,7 +39,7 @@
                     </div>
 
                     <input name="servings" placeholder="Servings">
-                    
+
                     <select name="rating">
                         <option value="">Select Rating</option>
                         <option value="1">1 Star</option>
@@ -52,7 +48,7 @@
                         <option value="4">4 Star</option>
                         <option value="5">5 Star</option>
                     </select>
-                    
+
                     <textarea name="instructions" placeholder="Add Instructions..."></textarea>
 
                     <button type="submit">Add Recipe</button>
@@ -62,48 +58,18 @@
 
         </div>
 
-        <div class = "reviews">
-            <img src = "/images/sobadigiveaone.gif" alt = "Its so bad, I want to give you a zero. But I cant. So I give you, a one.">
-            <div class = "rate">
-                <p> Rate on a scale of 1 (Worst) to 5 (Best) </p>
-                <form>
-                    <input type = "radio" id = "oneS" name = "rating" value="1">
-                    <label for = "oneS"> 1 Star </label>
-                    <br>
-                    <input type = "radio" id = "twoS" name = "rating" value="2">
-                    <label for = "twoS"> 2 Star </label>
-                    <br>
-                    <input type = "radio" id = "threeS" name = "rating" value="3">
-                    <label for = "threeS"> 3 Star </label>
-                    <br>
-                    <input type = "radio" id = "fourS" name = "rating" value="4">
-                    <label for = "fourS"> 4 Star </label>
-                    <br>
-                    <input type = "radio" id = "fiveS" name = "rating" value="5">
-                    <label for = "fiveS"> 5 Star </label>
-                </form>
-            </div>
-        </div>
+        
 
-        <script>
-            function on(){
-                document.getElementById("overlay").style.display = "block";
-                document.getElementById("recipePage").style.display = "block";
-            }
-
-            function off(){
-                document.getElementById("overlay").style.display = "none";
-                document.getElementById("recipePage").style.display = "none";
-            }
-
-            /* Script code below was done by Mason */
+    <script>
             document.getElementById("recipeForm").addEventListener("submit", async (e) => {
                 e.preventDefault();
 
                 const formData = new FormData(e.target);
 
                 const data = Object.fromEntries(formData.entries());
-                data.added_by = localStorage.getItem('username') || 'Anonymous';
+                data.added_by = localStorage.getItem('username') || 'Unknown';
+
+                // console.log(data);
 
                 try {
                     const response = await fetch("http://localhost:3000/recipes", {
@@ -115,10 +81,9 @@
                     });
 
                     const result = await response.json();
-                    console.log(result);
+                    // console.log(result);
 
                     e.target.reset();
-                    off();
 
                 }
                 catch (err) {
@@ -128,6 +93,10 @@
                 }
             });
         </script>
-        
+
+
     </body>
+
+    
+
 </html>
