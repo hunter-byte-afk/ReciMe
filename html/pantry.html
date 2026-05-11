@@ -69,40 +69,32 @@
                 <br>
                 <div class = "topic">
                     <p> Rating </p>
-                    <form>
-                        <input type = "radio" id = "oneS" name = "rating" value="1">
-                        <label for = "oneS"> 1 Star </label>
-                        <br>
-                        <input type = "radio" id = "twoS" name = "rating" value="2">
-                        <label for = "twoS"> 2 Star </label>
-                        <br>
-                        <input type = "radio" id = "threeS" name = "rating" value="3">
-                        <label for = "threeS"> 3 Star </label>
-                        <br>
-                        <input type = "radio" id = "fourS" name = "rating" value="4">
-                        <label for = "fourS"> 4 Star </label>
-                        <br>
-                        <input type = "radio" id = "fiveS" name = "rating" value="5">
-                        <label for = "fiveS"> 5 Star </label>
-                    </form>
+                    <select id="ratingSelect">
+                        <option value="">Any Rating</option>
+                        <option value="1">1 Star and above</option>
+                        <option value="2">2 Stars and above</option>
+                        <option value="3">3 Stars and above</option>
+                        <option value="4">4 Stars and above</option>
+                        <option value="5">5 Stars</option>
+                    </select>
                 </div>
 
                 <div class = "topic">
                     <p> Meal Type </p>
-                    <form>
-                        <input type = "radio" id = "breakfast" name = "mealType">
+                    <form id="mealTypeForm">
+                        <input type = "checkbox" id = "breakfast" name = "mealType" value="Breakfast">
                         <label for = "breakfast"> Breakfast </label>
                         <br>
-                        <input type = "radio" id = "lunch" name = "mealType">
+                        <input type = "checkbox" id = "lunch" name = "mealType" value="Lunch">
                         <label for = "lunch"> Lunch </label>
                         <br>
-                        <input type = "radio" id = "dinner" name = "mealType">
+                        <input type = "checkbox" id = "dinner" name = "mealType" value="Dinner">
                         <label for = "dinner"> Dinner </label>
                         <br>
-                        <input type = "radio" id = "dessert" name = "mealType">
-                        <label for = "dessert"> Desert </label>
+                        <input type = "checkbox" id = "dessert" name = "mealType" value="Dessert">
+                        <label for = "dessert"> Dessert </label>
                         <br>
-                        <input type = "radio" id = "snack" name = "mealType">
+                        <input type = "checkbox" id = "snack" name = "mealType" value="Snack">
                         <label for = "snack"> Snack </label>
                     </form>
                 </div>
@@ -200,13 +192,14 @@
                 // Search button filtering
                 document.getElementById("searchBtn").addEventListener("click", async () => {
 
-                    const rating = document.querySelector('input[name="rating"]:checked')?.value;
-                    const mealType = document.querySelector('input[name="mealType"]:checked')?.id;
+                    const rating = document.getElementById("ratingSelect").value;
+                    const mealTypeCheckboxes = document.querySelectorAll('input[name="mealType"]:checked');
+                    const mealTypes = Array.from(mealTypeCheckboxes).map(cb => cb.value);
 
                     const url = new URL("http://localhost:3000/recipes/search");
 
                     if (rating) url.searchParams.append("rating", rating);
-                    if (mealType) url.searchParams.append("mealType", mealType);
+                    mealTypes.forEach(mt => url.searchParams.append("mealType", mt));
 
                     console.log(url.toString());
 
