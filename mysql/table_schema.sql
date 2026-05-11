@@ -41,3 +41,4 @@ CREATE TABLE pantry (
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id) ON DELETE CASCADE
 );
 
+ALTER TABLE recipes ADD COLUMN added_by VARCHAR(255);
