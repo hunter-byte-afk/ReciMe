@@ -2,6 +2,8 @@ body{
     background-color: #F4F1EA;
     margin: 0px;
     padding: 0px;
+    background-image: url("/images/foodBkg.png");
+    background-size: 1080px 750px;
 }
 
 button{
@@ -18,6 +20,7 @@ button{
     padding: 0px;
     font-size: 20px;
     font-weight: bold;
+    position: sticky;
 }
 
 .navbar ul li{
@@ -65,7 +68,24 @@ button{
 
 .prepItem{
     display: flex;
-    background-color: black;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.prepItem p{
+    text-align: left;
+}
+
+.prepItem button{
+    width: 50px;
+    font-size: 15px;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.prepItem h6{
+    font-size: 15px;
+    margin: 0px;
 }
 
 .sun, .tue, .thur, .sat{
@@ -113,8 +133,6 @@ button{
 .home{
     display: flex;
     align-items: flex-start;
-    background-image: url("/images/foodBkg.png");
-    background-size:auto;
 }
 
 .grocery{
@@ -269,12 +287,15 @@ button{
 /* PANTRY: Search Section*/
 .search{
     background-color: #A49E8D;
+    border: 5px solid #504136;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 15px;
     width: 200px;
+    box-shadow: 4px 4px 8px #504136;
 }
 
 .search .topic{
@@ -303,6 +324,9 @@ button{
     min-height: 400px;
     padding: 20px;
     align-content: flex-start;
+    border: 5px solid #504136;
+    border-radius: 5px;
+    box-shadow: 4px 4px 8px #504136;
 }
 
 .recipeCard{
