@@ -113,6 +113,8 @@ button{
 .home{
     display: flex;
     align-items: flex-start;
+    background-image: url("/images/foodBkg.png");
+    background-size:auto;
 }
 
 .grocery{
@@ -204,12 +206,36 @@ button{
     width: 200px;
     height: 200px;
     margin: 25px;
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     box-shadow: 4px 4px 16px #504136;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+    position: relative;
+    transition: all .3s ease;
+}
+
+.pinboard .pin{
+    width: 30px;
+    height: 30px;
+    background-color: #689689;
+    border: 3px solid #567a6d;
+    border-radius: 100px;
+    position: absolute;
+    top: -15px;
+    box-shadow: 4px 4px 4px #767676;
+}
+
+.pinItem:hover .pin{
+    background-color: #DA4167;
+    border: 3px solid #541424;
+}
+
+.pinItem:hover{
+    margin-top: 20px;
+    scale: 1;
 }
 
 .pinItem button{
@@ -217,12 +243,19 @@ button{
     height: 200px;
     background-color: #F4F1EA;
     border: none;
+    border-radius: 5px;
     font-size: 50px;
 }
 
 .pinItem button:hover{
     color: #F4F1EA;
-    background-color: #689689;
+    border: 5px solid #689689;
+    border-radius: 5px;
+}
+
+.pinItem h1, p{
+    text-align: center;
+    
 }
 
 
