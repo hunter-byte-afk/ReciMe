@@ -7,7 +7,7 @@
         <!-- Navagation Bar Inormation Here -->
         <div class = "navbar">
             <ul>
-                <li class = "logout"> <a href = ""> Logout </a></li>
+                <li class = "logout"> <a href = "/"> Logout </a></li>
                 <li> <a href = "/pantry.html"> Pantry </a></li>
                 <li> <a href = "/prep.html"> Meal Prep </a></li>
                 <li> <button class = "addRecipeBtn" onclick = "on()"> Add Recipe </button></li>
@@ -53,8 +53,6 @@
 
                     <button type="submit">Add Recipe</button>
                 </form>
-
-                <p id="status"></p>
 
             </div>
 
@@ -107,6 +105,7 @@
                 const formData = new FormData(e.target);
 
                 const data = Object.fromEntries(formData.entries());
+                data.added_by = localStorage.getItem('username') || 'Anonymous';
 
                 try {
                     const response = await fetch("http://localhost:3000/recipes", {
@@ -120,9 +119,8 @@
                     const result = await response.json();
                     console.log(result);
 
-                    document.getElementById("status").innerText = "Recipe added successfully! ID: " + result.recipeId;
-
                     e.target.reset();
+                    off();
 
                 }
                 catch (err) {

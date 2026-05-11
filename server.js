@@ -27,12 +27,12 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/html/login.html');
+});
+
 // static file to route to index.html
 app.use(express.static('html'));
-
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/html/index.html');
-});
 app.use(express.static(path.join(__dirname), {index: false}));
 
 
@@ -41,8 +41,8 @@ const db = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     database: 'recime',
-    user: 'root',
-    password: 'root'
+    user: 'recime',
+    password: ''
 });
 
 db.connect(function(err) {
@@ -83,13 +83,14 @@ db.connect(function(err) {
         instructions,
         rating,
         meal_type,
-        ingredients
+        ingredients,
+        added_by
     } = req.body;
 
     const sql = `
         INSERT INTO recipes
-        (name, description, cook_time, prep_time, servings, instructions, rating, meal_type)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        (name, description, cook_time, prep_time, servings, instructions, rating, meal_type, added_by)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.query(
@@ -102,7 +103,8 @@ db.connect(function(err) {
             parseInt(servings) || 0, 
             instructions,
             parseInt(rating) || 0,
-            meal_type
+            meal_type,
+            added_by || "Unknown"
 
         ],
         (err, result) => {
