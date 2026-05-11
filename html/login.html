@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel = "stylesheet" href = "/html/style.css">
+        <link rel = "stylesheet" href = "/style.css">
     </head>
     <body>
         <!-- Navagation Bar Inormation Here -->
@@ -47,9 +47,10 @@
                     });
                     const result = await response.json();
                     console.log(result);
-                    //here we would set user in some kind of session manager
+                    
+                    localStorage.setItem('username', data.name);
                     //redirect to homepage
-                    window.location.href = "../homepage.html"
+                    window.location.href = "/index.html"
                 }
                 catch(err){
                     console.error(err);
