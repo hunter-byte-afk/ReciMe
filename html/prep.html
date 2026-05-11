@@ -8,7 +8,6 @@
         <div class = "navbar">
             <ul>
                 <li class = "logout"> <a href = ""> Logout </a></li>
-                <li> <a href = "review.html"> Reviews </a></li>
                 <li> <a href = "pantry.html"> Pantry </a></li>
                 <li class = "selected"> <a href = "prep.html"> Meal Prep </a></li>
                 <li> <button class = "addRecipeBtn" onclick = "on()"> Add Recipe </button></li>
@@ -20,7 +19,7 @@
         <div id = "overlay" onclick = "off()"></div>
 
         <!-- Transfered html from "addRecipe.html that was coded by Mason "-->
-        <div class="addRecipePage" id = "recipePage">
+        <div class="addRecipePage" id = "recipePage" onclick = "off()">
 
             <div class="formContainer">
                 <h1>Add New Recipe</h1>
@@ -66,7 +65,7 @@
 
         <div class = "prep">
             <div class = "week">
-                <div class = "sun">
+                <div class = "sun"  id = "brown">
                     <p> Sunday </p>
                     <br>
                     <div class = "prepItem">
@@ -74,27 +73,27 @@
                     </div>
                 </div>
 
-                <div class = "mon">
+                <div class = "mon" id = "blue">
                     <p> Monday </p>
                 </div>
 
-                <div class = "tue">
+                <div class = "tue" id = "brown">
                     <p> Tuesday </p>
                 </div>
 
-                <div class = "wed">
+                <div class = "wed"  id = "blue">
                     <p> Wednesday </p>
                 </div>
 
-                <div class = "thur">
+                <div class = "thur" id = "brown">
                     <p> Thursday </p>
                 </div>
 
-                <div class = "fri">
+                <div class = "fri"  id = "blue">
                     <p> Friday </p>
                 </div>
                 
-                <div class = "sat">
+                <div class = "sat" id = "brown">
                     <p> Saturday </p>
                 </div>
             </div>
@@ -102,12 +101,10 @@
 
         <script>
             function on(){
-                document.getElementById("overlay").style.display = "block";
-                document.getElementById("recipePage").style.display = "block";
+                document.getElementById("recipePage").style.display = "flex";
             }
 
             function off(){
-                document.getElementById("overlay").style.display = "none";
                 document.getElementById("recipePage").style.display = "none";
             }
 

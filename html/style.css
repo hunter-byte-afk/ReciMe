@@ -62,66 +62,47 @@ button{
     margin: 25px 75px;
 }
 
+
 .prepItem{
     display: flex;
     background-color: black;
 }
 
-.sun{
+.sun, .tue, .thur, .sat{
     margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
+    color: #505050;
+    background-color: #F4F1EA;
+    border: 5px solid #504136;
+    border-radius: 10px;
+    width: 160px;
     height: 500px;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: 4px 4px 8px #567a6d;
 }
 
-.mon{
+.mon, .wed, .fri{
     margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
+    color: #567a6d;
+    background-color: #F4F1EA;
+    border: 5px solid #567a6d;
+    border-radius: 10px;
+    width: 160px;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: 4px 4px 8px #567a6d;
 }
 
-.tue{
-    margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
-    text-align: center;
+.mon p, .wed p, .fri p{
+    border-bottom: 2px solid #689689;
+    margin: 5px 7px;
 }
 
-.wed{
-    margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
-    text-align: center;
-}
-
-.thur{
-    margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
-    text-align: center;
-}
-
-.fri{
-    margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
-    text-align: center;
-}   
-
-.sat{
-    margin: 0px 10px;
-    color: #F4F1EA;
-    background-color: #504136;
-    width: 175px;
-    text-align: center;
+.sun p, .tue p, .thur p, .sat p{
+    border-bottom: 2px solid #504136;
+    margin: 5px 7px;
 }
 
 
@@ -132,22 +113,6 @@ button{
 .home{
     display: flex;
     align-items: flex-start;
-}
-
-#overlay{
-   position: fixed;
-   background-color: #567a6d65; 
-   display: none;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   z-index: 3;
-   cursor: pointer;
-}
-
-.addOverlay{
-    cursor: pointer;
 }
 
 .grocery{
@@ -185,7 +150,40 @@ button{
     width: 255px;
     box-shadow: 4px 4px 8px #504136;
     border-radius: 8px;
+    font-size: 20px;
 }
+
+.grocery input{
+    border: 2px solid #504136;
+    border-radius: 5px;
+    height: 25px;
+}
+
+.grocery button{
+    background-color: #689689;
+    color: white;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#groceryList{
+    margin: 0px;
+    padding-left: 5px;
+}
+
+#groceryList li{
+    justify-content: space-between;
+    display: flex;
+    border-bottom: 2px solid #A49E8D;
+    list-style-type: disc;
+}
+
+#groceryList button{
+    height: 25px;
+}
+
 
 .pinboard{
     background-color: #A49E8D;
@@ -208,7 +206,6 @@ button{
     margin: 25px;
     overflow: hidden;
     display: flex;
-    flex: wrap;
     box-shadow: 4px 4px 16px #504136;
     display: flex;
     justify-content: center;
@@ -352,27 +349,35 @@ button{
 
 /* addRecipe */
 .addRecipePage{
-    display: flex;
-    justify-content: center;
-    padding: 40px;
     display: none;
     z-index: 4;
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #1b30288b;
+    cursor: pointer;
 }
 
 .formContainer{
     background-color: #A49E8D;
     width: 700px;
-    padding: 30px;
+    height: 675px;
+    padding: 10px;
     border-radius: 15px;
     border: 8px solid #504136;
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
+    cursor: default;
 }
 
 .formContainer h1{
     text-align: center;
     color: #F4F1EA;
-    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     font-size: 32px;
 }
 
@@ -383,17 +388,19 @@ button{
 }
 
 #recipeForm input,
-#recipeForm textarea{
+#recipeForm textarea,
+#recipeForm select{
     padding: 12px;
     border: 3px solid #504136;
     border-radius: 8px;
     font-size: 16px;
     background-color: #F4F1EA;
     box-sizing: border-box;
+    color:#6d6b67;
 }
 
 #recipeForm textarea{
-    min-height: 180px;
+    min-height: 150px;
     resize: vertical;
 }
 
@@ -428,15 +435,6 @@ button{
     font-weight: bold;
     color: #F4F1EA;
     font-size: 18px;
-}
-
-/*Additions for overlay*/
-.addRecipePage #recipePage{
-    display: none;
-    z-index: 3;
-    position: fixed;
-    justify-content: center;
-    
 }
 
 .addRecipeBtn{
