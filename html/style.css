@@ -207,7 +207,40 @@ button{
     width: 255px;
     box-shadow: 4px 4px 8px #504136;
     border-radius: 8px;
+    font-size: 20px;
 }
+
+.grocery input{
+    border: 2px solid #504136;
+    border-radius: 5px;
+    height: 25px;
+}
+
+.grocery button{
+    background-color: #689689;
+    color: white;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#groceryList{
+    margin: 0px;
+    padding-left: 5px;
+}
+
+#groceryList li{
+    justify-content: space-between;
+    display: flex;
+    border-bottom: 2px solid #A49E8D;
+    list-style-type: disc;
+}
+
+#groceryList button{
+    height: 25px;
+}
+
 
 .pinboard{
     background-color: #A49E8D;
