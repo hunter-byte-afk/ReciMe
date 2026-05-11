@@ -19,7 +19,7 @@
         <div id = "overlay" onclick = "off()"></div>
 
         <!-- Transfered html from "addRecipe.html that was coded by Mason "-->
-        <div class="addRecipePage" id = "recipePage">
+        <div class="addRecipePage" id = "recipePage" onclick = "off()">
 
             <div class="formContainer">
                 <h1>Add New Recipe</h1>
@@ -227,12 +227,10 @@
 
             /*Overlay*/
             function on(){
-                document.getElementById("overlay").style.display = "block";
-                document.getElementById("recipePage").style.display = "block";
+                document.getElementById("recipePage").style.display = "flex";
             }
 
             function off(){
-                document.getElementById("overlay").style.display = "none";
                 document.getElementById("recipePage").style.display = "none";
             }
 

@@ -62,12 +62,13 @@ button{
     margin: 25px 75px;
 }
 
+
 .prepItem{
     display: flex;
     background-color: black;
 }
 
-.sun{
+.sun, .tue, .thur, .sat{
     margin: 0px 10px;
     color: #505050;
     background-color: #F4F1EA;
@@ -81,7 +82,7 @@ button{
     box-shadow: 4px 4px 8px #567a6d;
 }
 
-.mon{
+.mon, .wed, .fri{
     margin: 0px 10px;
     color: #567a6d;
     background-color: #F4F1EA;
@@ -94,72 +95,14 @@ button{
     box-shadow: 4px 4px 8px #567a6d;
 }
 
-.tue{
-    margin: 0px 10px;
-    color: #505050;
-    background-color: #F4F1EA;
-    border: 5px solid #504136;
-    border-radius: 10px;
-    width: 160px;
-    height: 500px;
-    text-align: center;
-    font-weight: bold;
-    font-size: large;
-    box-shadow: 4px 4px 8px #567a6d;
+.mon p, .wed p, .fri p{
+    border-bottom: 2px solid #689689;
+    margin: 5px 7px;
 }
 
-.wed{
-    margin: 0px 10px;
-    color: #567a6d;
-    background-color: #F4F1EA;
-    border: 5px solid #567a6d;
-    border-radius: 10px;
-    width: 160px;
-    text-align: center;
-    font-weight: bold;
-    font-size: large;
-    box-shadow: 4px 4px 8px #567a6d;
-}
-
-.thur{
-    margin: 0px 10px;
-    color: #505050;
-    background-color: #F4F1EA;
-    border: 5px solid #504136;
-    border-radius: 10px;
-    width: 160px;
-    height: 500px;
-    text-align: center;
-    font-weight: bold;
-    font-size: large;
-    box-shadow: 4px 4px 8px #504136;
-}
-
-.fri{
-    margin: 0px 10px;
-    color: #567a6d;
-    background-color: #F4F1EA;
-    border: 5px solid #567a6d;
-    border-radius: 10px;
-    width: 160px;
-    text-align: center;
-    font-weight: bold;
-    font-size: large;
-    box-shadow: 4px 4px 8px #567a6d;
-}   
-
-.sat{
-    margin: 0px 10px;
-    color: #505050;
-    background-color: #F4F1EA;
-    border: 5px solid #504136;
-    border-radius: 10px;
-    width: 160px;
-    height: 500px;
-    text-align: center;
-    font-weight: bold;
-    font-size: large;
-    box-shadow: 4px 4px 8px #504136;
+.sun p, .tue p, .thur p, .sat p{
+    border-bottom: 2px solid #504136;
+    margin: 5px 7px;
 }
 
 
@@ -416,6 +359,7 @@ button{
     justify-content: center;
     align-items: center;
     background-color: #1b30288b;
+    cursor: pointer;
 }
 
 .formContainer{
@@ -426,6 +370,7 @@ button{
     border-radius: 15px;
     border: 8px solid #504136;
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2);
+    cursor: default;
 }
 
 .formContainer h1{
