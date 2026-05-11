@@ -5,6 +5,10 @@
 
 // Mason Eiland
 // Adding some server backend stuff (express) localhost:3000/recipes for now
+// Get Recipes, Add Recipes, Search Recipes logic
+
+// Victoria Treviño
+// Connecting a route to html on initial page load.
 
 //Logan Bales
 // Added backend routes for user database
@@ -23,6 +27,12 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+// static file to route to index.html
+app.use(express.static('html'));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/html/index.html');
+});
 app.use(express.static(path.join(__dirname), {index: false}));
 
 
@@ -51,8 +61,7 @@ db.connect(function(err) {
     console.log('Query results:', results);
   });
 
-
-  // test route same thing as the db.query above just done on the server side
+  // ------- RECIPES -------
   // Retrieves all recipes
   app.get('/recipes', (req, res) => {
     db.query('SELECT * FROM recipes', (err, results) => {
@@ -67,28 +76,34 @@ db.connect(function(err) {
   app.post('/recipes', (req, res) => {
     const {
         name,
-        desciption,
+        description,
         cook_time,
         prep_time,
         servings,
-        instructions
+        instructions,
+        rating,
+        meal_type,
+        ingredients
     } = req.body;
 
     const sql = `
         INSERT INTO recipes
-        (name, description, cook_time, prep_time, servings, instructions)
-        VALUES (?, ?, ?, ?, ?, ?)
+        (name, description, cook_time, prep_time, servings, instructions, rating, meal_type)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.query(
         sql,
         [
             name, 
-            desciption, 
+            description, 
             parseInt(cook_time) || 0, 
             parseInt(prep_time) || 0, 
             parseInt(servings) || 0, 
-            instructions
+            instructions,
+            parseInt(rating) || 0,
+            meal_type
+
         ],
         (err, result) => {
             if (err) {
@@ -110,7 +125,7 @@ db.connect(function(err) {
     let params = [];
 
     if (rating) {
-        sql += " AND rating = ?";
+        sql += " AND rating >= ?";
         params.push(rating);
     }
 
@@ -131,6 +146,59 @@ db.connect(function(err) {
         res.json(results);
     });
   });
+
+
+// ------ INGREDIENTS -------
+
+app.get('/ingredients', (req, res) => {
+    db.query('SELECT * FROM ingredients', (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.json(results);
+    });
+});
+
+app.post('/ingredients', (req, res) => {
+    const {name} = req.body;
+    const sql = `
+            INSERT INTO ingredients
+            (name)
+            VALUES (?)
+        `;
+
+    db.query(sql, [name], (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        } 
+        res.json({
+            ingredient_id: results.insertId,
+            name
+        });
+    });
+
+});
+
+app.delete('/ingredients/:id', (req, res) => {
+    const {id} = req.params;
+
+    const sql = `
+        DELETE FROM ingredients
+        WHERE ingredient_id = ?
+    `;
+
+    db.query(sql, [id], (err, results) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.json({
+            message: "Ingredient deleted",
+            affectedRows: results.affectedRows
+        });
+    });
+});
+
+// ----- USERS ------
 
   app.get('/users', (req, res) => {
     db.query('SELECT * FROM users', (err, results) => {

@@ -8,11 +8,11 @@
         <div class = "navbar">
             <ul>
                 <li class = "logout"> <a href = ""> Logout </a></li>
-                <li> <a href = "review.html"> Reviews </a></li>
-                <li> <a href = "pantry.html"> Pantry </a></li>
-                <li class = "selected"> <a href = "prep.html"> Meal Prep </a></li>
+                <li> <a href = "/review.html"> Reviews </a></li>
+                <li> <a href = "/pantry.html"> Pantry </a></li>
+                <li> <a href = "/prep.html"> Meal Prep </a></li>
                 <li> <button class = "addRecipeBtn" onclick = "on()"> Add Recipe </button></li>
-                <li style = "float: left"> <a href = "/index.html"> ReciMe </a></li>
+                <li class = "selected" style = "float: left"> <a href = "/index.html"> ReciMe </a></li>
             </ul>
         </div>
 
@@ -43,7 +43,7 @@
                     </div>
 
                     <input name="servings" placeholder="Servings">
-
+                    
                     <select name="rating">
                         <option value="">Select Rating</option>
                         <option value="1">1 Star</option>
@@ -64,39 +64,34 @@
 
         </div>
 
-        <div class = "prep">
-            <div class = "week">
-                <div class = "sun">
-                    <p> Sunday </p>
-                    <br>
-                    <div class = "prepItem">
-
-                    </div>
+        <div class = "home">
+            <!-- Grocery List Informaiton Here-->
+            <div class = "grocery">
+                <div class = "groceryLabel">
+                    <h2> Grocery List </h2>
                 </div>
 
-                <div class = "mon">
-                    <p> Monday </p>
-                </div>
+                <div class = "list">
+                    <input type = "text" id = "newItem" name = "item" placeholder= "New item...">
+                    <button type="button"> Add Item </button>
 
-                <div class = "tue">
-                    <p> Tuesday </p>
+                    <ul id="groceryList">
+                    <li> Sugar </li> 
+                    <li> Cinnamon </li>
+                    <li> Rice </li>
+                    </ul>
                 </div>
+            </div>
 
-                <div class = "wed">
-                    <p> Wednesday </p>
+            <!-- Pinboard Information Here -->
+            <div class = "pinboard">
+                <div class = "pinItem">
+                    <button> + </button>
                 </div>
-
-                <div class = "thur">
-                    <p> Thursday </p>
-                </div>
-
-                <div class = "fri">
-                    <p> Friday </p>
-                </div>
-                
-                <div class = "sat">
-                    <p> Saturday </p>
-                </div>
+                <div class = "pinItem"></div>
+                <div class = "pinItem"></div>
+                <div class = "pinItem"></div>
+                <div class = "pinItem"></div>
             </div>
         </div>
 
@@ -142,6 +137,66 @@
                     "Error adding recipe";
                 }
             });
+
+            document.querySelector(".list button").addEventListener("click", async () => {
+                const input = document.getElementById("newItem");
+
+                const data = input.value.trim();
+    
+                try {
+                    const response = await fetch("http://localhost:3000/ingredients", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            name: data
+                        })
+                    });
+
+                    const result = await response.json();
+                    console.log(result);
+
+                    input.value = ""; // clear input
+                    loadIngredients(); // refresh list
+
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+
+            async function loadIngredients() {
+                try {
+                    const res = await fetch('/ingredients');
+                    const data = await res.json()
+
+                    const list = document.getElementById('groceryList');
+                    list.innerHTML = '';
+
+                    data.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item.name + " ";
+
+                        const dltBtn = document.createElement('button');
+                        dltBtn.textContent = "X";
+
+                        dltBtn.addEventListener("click", async () => {
+                            await fetch(`http://localhost:3000/ingredients/${item.ingredient_id}`, {
+                                method: "DELETE"
+                            });
+                            loadIngredients() // reloads ingredient list after delete
+                        });
+                        li.appendChild(dltBtn); // adds delete button to ingredient item
+                        list.appendChild(li); // adds ingredient item to groceryList
+                    });
+                }
+                catch (err) {
+                    console.error('Error loading ingredients: ', err);
+                }
+            }
+
+            loadIngredients();
         </script>
+
     </body>
 </html>

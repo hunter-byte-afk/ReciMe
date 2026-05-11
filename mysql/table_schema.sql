@@ -1,4 +1,4 @@
--- create schema recime;
+create schema recime;
 use recime;
 CREATE TABLE recipes (
     recipe_id INT AUTO_INCREMENT PRIMARY KEY,
